@@ -1,13 +1,13 @@
-Quake Report App
+Just Earth App
 ===================================
 
-This app displays a list of recent earthquakes in the world
-from the U.S. Geological Survey (USGS) organization.
+This app displays a list of recent articles from the Environment section
+of The Guardian, an online news organization.
 
 Used in a Udacity course in the Beginning Android Nanodegree.
 
-More info on the USGS Earthquake API available at:
-https://earthquake.usgs.gov/fdsnws/event/1/
+More info on The Guardian API available at:
+https://open-platform.theguardian.com/
 
 Pre-requisites
 --------------
