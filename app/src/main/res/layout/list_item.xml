@@ -1,0 +1,73 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/layout_height"
+    android:orientation="horizontal"
+    android:paddingEnd="@dimen/padding"
+    android:paddingLeft="@dimen/padding"
+    android:paddingRight="@dimen/padding"
+    android:paddingStart="@dimen/padding"
+    >
+
+
+    <LinearLayout
+        android:layout_width="@dimen/width"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:layout_marginTop="@dimen/margin_small"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/section_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif-medium"
+            android:maxLines="1"
+            android:textAllCaps="true"
+            android:textColor="@color/textColorArticleDetails"
+            android:textSize="@dimen/text_size"
+            tools:text="ENVIRONMENT" />
+
+        <TextView
+            android:id="@+id/title_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@color/textColorArticleTitle"
+            android:textSize="@dimen/text_size_medium"
+            tools:text="Long placeholder location that should wrap to more than 2 lines of text" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginStart="@dimen/margin"
+        android:layout_marginTop="@dimen/margin_small"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/date_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:textColor="@color/textColorArticleDetails"
+            android:textSize="@dimen/text_size"
+            tools:text="Sept 21, 2018" />
+
+        <TextView
+            android:id="@+id/author_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:textColor="@color/textColorArticleDetails"
+            android:textSize="@dimen/text_size"
+            tools:text="Amy Daniewicz" />
+
+    </LinearLayout>
+</LinearLayout>
