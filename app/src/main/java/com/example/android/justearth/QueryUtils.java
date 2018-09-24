@@ -23,21 +23,13 @@ import java.util.List;
  */
 public final class QueryUtils {
 
-    /** Tag for the log messages */
     public static final String LOG_TAG = QueryUtils.class.getSimpleName();
 
-    /**
-     * Create a private constructor.
-     */
     private QueryUtils() {
     }
 
-    /**
-     * Query The Guardian dataset and return an {@link Article} object to represent a single article.
-     */
     public static List<Article> fetchArticleData(String requestUrl) {
 
-        // Create URL object
         URL url = createUrl(requestUrl);
 
         // Perform HTTP request to the URL and receive a JSON response back
@@ -48,16 +40,11 @@ public final class QueryUtils {
             Log.e(LOG_TAG, "Error closing input stream", e);
         }
 
-        // Extract relevant fields from the JSON response and create an {@link Article} object
         List<Article> articleArrayList = extractFeatureFromJson(jsonResponse);
 
-        // Return the {@link Article}
         return articleArrayList;
     }
 
-    /**
-     * Returns new URL object from the given string URL.
-     */
     private static URL createUrl(String stringUrl) {
         URL url = null;
         try {
@@ -68,9 +55,6 @@ public final class QueryUtils {
         return url;
     }
 
-    /**
-     * Make an HTTP request to the given URL and return a String as the response.
-     */
     private static String makeHttpRequest(URL url) throws IOException {
         String jsonResponse = "";
 
@@ -127,23 +111,14 @@ public final class QueryUtils {
         return output.toString();
     }
 
-
-    /**
-     * Return a list of {@link Article} objects that has been built up from
-     * parsing a JSON response.
-     */
     private static List<Article> extractFeatureFromJson(String articleJson) {
         if (TextUtils.isEmpty(articleJson)) {
             return null;
         }
-        // Create an empty ArrayList that we can start adding articles to
+
         List<Article> articleArrayList = new ArrayList<>();
 
-        // Try to parse the SAMPLE_JSON_RESPONSE. If there's a problem with the way the JSON
-        // is formatted, a JSONException exception object will be thrown.
-        // Catch the exception so the app doesn't crash, and print the error message to the logs.
         try {
-            // build up a list of Article objects with the corresponding data.
             JSONObject root = new JSONObject(articleJson);
             JSONObject responseObject = root.getJSONObject("response");
             JSONArray resultsArray = responseObject.getJSONArray("results");
@@ -165,14 +140,9 @@ public final class QueryUtils {
                 articleArrayList.add(article);
             }
         } catch (JSONException e) {
-            // If an error is thrown when executing any of the above statements in the "try" block,
-            // catch the exception here, so the app doesn't crash. Print a log message
-            // with the message from the exception.
             Log.e("QueryUtils", "Problem parsing the article JSON results", e);
         }
 
-        // Return the list of earthquakes
         return articleArrayList;
     }
-
 }

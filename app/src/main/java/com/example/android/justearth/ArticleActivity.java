@@ -17,12 +17,18 @@ package com.example.android.justearth;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.content.Loader;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.util.LogPrinter;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -33,37 +39,29 @@ import android.app.LoaderManager.LoaderCallbacks;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArticleActivity extends AppCompatActivity implements LoaderCallbacks<List<Article>>{
+public class ArticleActivity extends AppCompatActivity implements LoaderCallbacks<List<Article>>,
+        SharedPreferences.OnSharedPreferenceChangeListener {
 
     public static final String LOG_TAG = ArticleActivity.class.getName();
     private ArticleAdapter mAdapter;
     private static final int ARTICLE_LOADER_ID = 1;
     private TextView mEmptyStateTextView;
 
-
-
-    /**
-     * URL to query The Guardian for article information
-     */
     private static final String GUARDIAN_REQUEST_URL =
-            "https://content.guardianapis.com/search?section=environment&api-key=b3760c6a-d5f0-49a1-aa2a-31f32904f851&show-fields=thumbnail&show-tags=contributor";
+            "https://content.guardianapis.com/search";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.article_activity);
 
-        // Find a reference to the {@link ListView} in the layout
         ListView articleListView = (ListView) findViewById(R.id.list);
 
         mEmptyStateTextView = (TextView) findViewById(R.id.emptyView);
         articleListView.setEmptyView(mEmptyStateTextView);
 
-        // Create a new {@link ArrayAdapter} of articles
         mAdapter = new ArticleAdapter(this, new ArrayList<Article>());
 
-        // Set the adapter on the {@link ListView}
-        // so the list can be populated in the user interface
         articleListView.setAdapter(mAdapter);
 
         articleListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -77,13 +75,12 @@ public class ArticleActivity extends AppCompatActivity implements LoaderCallback
                 // Create a new intent to view the article URI
                 Intent websiteIntent = new Intent(Intent.ACTION_VIEW, articleUri);
 
-                // Send the intent to launch a new activity
                 startActivity(websiteIntent);
             }
         });
 
         ConnectivityManager cm =
-                (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         boolean isConnected = activeNetwork != null &&
@@ -93,21 +90,46 @@ public class ArticleActivity extends AppCompatActivity implements LoaderCallback
             LoaderManager loaderManager = getLoaderManager();
             loaderManager.initLoader(ARTICLE_LOADER_ID, null, this);
         } else {
-            View loadingSpinner = findViewById(R.id.loadingSpinner);
+            View loadingSpinner = findViewById(R.id.loading_spinner);
             loadingSpinner.setVisibility(View.GONE);
             mEmptyStateTextView.setText(R.string.no_internet);
         }
     }
 
     @Override
-    public Loader<List<Article>> onCreateLoader(int id, Bundle args) {
-        return new ArticleLoader(this, GUARDIAN_REQUEST_URL );
-    }
+    public Loader<List<Article>> onCreateLoader(int i, Bundle bundle) {
+
+            SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+            String filterBy = sharedPrefs.getString(
+                getString(R.string.settings_filter_by_key),
+                getString(R.string.settings_filter_by_default));
+
+            String orderBy = sharedPrefs.getString(
+                    getString(R.string.settings_order_by_key),
+                    getString(R.string.settings_order_by_default));
+
+            // parse breaks apart the URI string that's passed into its parameter
+            Uri baseUri = Uri.parse(GUARDIAN_REQUEST_URL);
+
+            // buildUpon prepares the baseUri that we just parsed so we can add query parameters to it
+            Uri.Builder uriBuilder = baseUri.buildUpon();
+
+            uriBuilder.appendQueryParameter(getString(R.string.parameter_section_label), getString(R.string.parameter_section_value));
+            uriBuilder.appendQueryParameter(getString(R.string.parameter_show_tags_label), getString(R.string.parameter_show_tags_keyword_value));
+            uriBuilder.appendQueryParameter(getString(R.string.parameter_show_tags_label), getString(R.string.parameter_show_tags_contributor_value));
+            uriBuilder.appendQueryParameter(getString(R.string.parameter_q_label), filterBy);
+            uriBuilder.appendQueryParameter(getString(R.string.parameter_order_by_label), orderBy);
+            uriBuilder.appendQueryParameter(getString(R.string.parameter_api_key_label), BuildConfig.ApiKey);
+
+            return new ArticleLoader(this, uriBuilder.toString());
+
+        }
 
     @Override
     public void onLoadFinished(Loader<List<Article>> loader, List<Article> articles) {
 
-        View loadingSpinner = findViewById(R.id.loadingSpinner);
+        View loadingSpinner = findViewById(R.id.loading_spinner);
         loadingSpinner.setVisibility(View.GONE);
 
         mAdapter.clear();
@@ -125,4 +147,38 @@ public class ArticleActivity extends AppCompatActivity implements LoaderCallback
         mAdapter.clear();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            Intent settingsIntent = new Intent(this, SettingsActivity.class);
+            startActivity(settingsIntent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
+        if (key.equals(getString(R.string.settings_order_by_key))){
+            mAdapter.clear();
+
+            // Hide the empty state text view as the loading indicator will be displayed
+            mEmptyStateTextView.setVisibility(View.GONE);
+
+            // Show the loading indicator while new data is being fetched
+            View loadingIndicator = findViewById(R.id.loading_spinner);
+            loadingIndicator.setVisibility(View.VISIBLE);
+
+            // Restart the loader to requery The Guardian as the query settings have been updated
+            getLoaderManager().restartLoader(ARTICLE_LOADER_ID, null, this);
+        }
+    }
 }

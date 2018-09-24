@@ -24,8 +24,6 @@ import java.util.Locale;
 
 public class ArticleAdapter extends ArrayAdapter<Article> {
 
-    private static final String LOCATION_SEPARATOR = " of ";
-
     public ArticleAdapter(Activity context, ArrayList<Article> articleArrayList) {
         super(context,  0, articleArrayList);
     }
@@ -62,9 +60,7 @@ public class ArticleAdapter extends ArrayAdapter<Article> {
             authorTextView.setText(author);
         }
 
-        //add additional components of article object here
         return listItemView;
     }
-
 }
 

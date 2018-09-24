@@ -28,7 +28,7 @@
             android:textAllCaps="true"
             android:textColor="@color/textColorArticleDetails"
             android:textSize="@dimen/text_size"
-            tools:text="ENVIRONMENT" />
+            tools:text="@string/placeholder_section_text" />
 
         <TextView
             android:id="@+id/title_text_view"
@@ -38,7 +38,7 @@
             android:maxLines="2"
             android:textColor="@color/textColorArticleTitle"
             android:textSize="@dimen/text_size_medium"
-            tools:text="Long placeholder location that should wrap to more than 2 lines of text" />
+            tools:text="@string/placeholder_title_text" />
 
     </LinearLayout>
 
@@ -58,7 +58,7 @@
             android:layout_gravity="end"
             android:textColor="@color/textColorArticleDetails"
             android:textSize="@dimen/text_size"
-            tools:text="Sept 21, 2018" />
+            tools:text="@string/placeholder_date" />
 
         <TextView
             android:id="@+id/author_text_view"
@@ -67,7 +67,7 @@
             android:layout_gravity="end"
             android:textColor="@color/textColorArticleDetails"
             android:textSize="@dimen/text_size"
-            tools:text="Amy Daniewicz" />
+            tools:text="@string/placeholder_author_text" />
 
     </LinearLayout>
 </LinearLayout>

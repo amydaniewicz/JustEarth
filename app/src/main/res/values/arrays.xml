@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="settings_filter_by_labels">
+        <item>@string/settings_filter_by_activism_label</item>
+        <item>@string/settings_filter_by_climate_label</item>
+        <item>@string/settings_filter_by_energy_label</item>
+        <item>@string/settings_filter_by_food_label</item>
+        <item>@string/settings_filter_by_gender_label</item>
+        <item>@string/settings_filter_by_indigenous_label</item>
+        <item>@string/settings_filter_by_litigation_label</item>
+        <item>@string/settings_filter_by_protest_label</item>
+        <item>@string/settings_filter_by_racism_label</item>
+        <item>@string/settings_filter_by_water_label</item>
+    </string-array>
+
+    <string-array name="settings_filter_by_values">
+        <item>@string/settings_filter_by_activism_value</item>
+        <item>@string/settings_filter_by_climate_value</item>
+        <item>@string/settings_filter_by_energy_value</item>
+        <item>@string/settings_filter_by_food_value</item>
+        <item>@string/settings_filter_by_gender_value</item>
+        <item>@string/settings_filter_by_indigenous_value</item>
+        <item>@string/settings_filter_by_litigation_value</item>
+        <item>@string/settings_filter_by_protest_value</item>
+        <item>@string/settings_filter_by_racism_value</item>
+        <item>@string/settings_filter_by_water_value</item>
+    </string-array>
+
+    <string-array name="settings_order_by_labels">
+        <item>@string/settings_order_by_most_recent_label</item>
+        <item>@string/settings_order_by_most_relevant_label</item>
+    </string-array>
+
+    <string-array name="settings_order_by_values">
+        <item>@string/settings_order_by_most_recent_value</item>
+        <item>@string/settings_order_by_most_relevant_value</item>
+    </string-array>
+</resources>

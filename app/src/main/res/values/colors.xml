@@ -20,13 +20,10 @@
     <!-- Primary dark color of the app (shown in the status bar) -->
     <color name="colorPrimaryDark">#1A237E</color>
 
-    <!-- Accent color of the app -->
     <color name="colorAccent">#F5A623</color>
 
-    <!-- Text color for the details of the article in the list item -->
     <color name="textColorArticleDetails">#B4BAC0</color>
 
-    <!-- Text color for the section of the article in the list item -->
     <color name="textColorArticleTitle">#2B3D4D</color>
 
 </resources>

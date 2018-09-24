@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2016 The Android Open Source Project
+<?xml version="1.0" encoding="utf-8"?><!-- Copyright (C) 2016 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -15,7 +14,83 @@
 -->
 <resources>
     <string name="app_name">Just Earth</string>
-    <string name="near_the">Near the</string>
-    <string name="no_articles">No articles found.</string>
-    <string name="no_internet">No access to the internet.</string>
+    <string name="no_articles">Noooo!\nNo articles were found.\nPlease try again later&#8212;maybe The Guardian is having a bad day!</string>
+    <string name="no_internet">Noooo!\nThere\'s no internet access.\nTry holding your phone up in the air.\nThat never works, but at least you\'ll feel like you're doing something.</string>
+
+    <string name="settings_menu_item">Settings</string>
+    <string name="settings_title">Article Settings</string>
+
+    <!-- Strings For Filter-By Preference [CHAR LIMIT=30] -->
+    <string name="settings_filter_by_label">Filter By Keyword</string>
+    <string name="settings_filter_by_key" translatable="false">q</string>
+    <string name="settings_filter_by_default" translatable="false">@string/settings_filter_by_activism_value</string>
+
+    <!-- Label for filter-by activism option [CHAR LIMIT=20] -->
+    <string name="settings_filter_by_activism_label">Activism</string>
+    <string name="settings_filter_by_activism_value" translatable="false">activism</string>
+
+    <!-- Label for filter-by climate option [CHAR LIMIT=20] -->
+    <string name="settings_filter_by_climate_label">Climate</string>
+    <string name="settings_filter_by_climate_value" translatable="false">climate</string>
+
+    <!-- Label for filter-by energy option [CHAR LIMIT=20] -->
+    <string name="settings_filter_by_energy_label">Energy</string>
+    <string name="settings_filter_by_energy_value" translatable="false">energy</string>
+
+    <!-- Label for filter-by food option [CHAR LIMIT=20] -->
+    <string name="settings_filter_by_food_label">Food</string>
+    <string name="settings_filter_by_food_value" translatable="false">food</string>
+
+    <!-- Label for filter-by gender option [CHAR LIMIT=20] -->
+    <string name="settings_filter_by_gender_label">Gender</string>
+    <string name="settings_filter_by_gender_value" translatable="false">gender</string>
+
+    <!-- Label for filter-by indigenous option [CHAR LIMIT=20] -->
+    <string name="settings_filter_by_indigenous_label">Indigenous</string>
+    <string name="settings_filter_by_indigenous_value" translatable="false">indigenous</string>
+
+    <!-- Label for filter-by litigation option [CHAR LIMIT=20] -->
+    <string name="settings_filter_by_litigation_label">Litigation</string>
+    <string name="settings_filter_by_litigation_value" translatable="false">litigation</string>
+
+    <!-- Label for filter-by protest option [CHAR LIMIT=20] -->
+    <string name="settings_filter_by_protest_label">Protest</string>
+    <string name="settings_filter_by_protest_value" translatable="false">protest</string>
+
+    <!-- Label for filter-by racism option [CHAR LIMIT=20] -->
+    <string name="settings_filter_by_racism_label">Racism</string>
+    <string name="settings_filter_by_racism_value" translatable="false">racism</string>
+
+    <!-- Label for filter-by water option [CHAR LIMIT=20] -->
+    <string name="settings_filter_by_water_label">Water</string>
+    <string name="settings_filter_by_water_value" translatable="false">water</string>
+
+    <!-- Strings For Order-By Preference [CHAR LIMIT=30] -->
+    <string name="settings_order_by_label">Order By</string>
+    <string name="settings_order_by_key" translatable="false">order_by</string>
+    <string name="settings_order_by_default" translatable="false">@string/settings_order_by_most_recent_value</string>
+
+    <!-- Label for order-by newest option [CHAR LIMIT=20] -->
+    <string name="settings_order_by_most_recent_label">Most Recent</string>
+    <string name="settings_order_by_most_recent_value" translatable="false">newest</string>
+
+    <!-- Label for order-by relevance option [CHAR LIMIT=20] -->
+    <string name="settings_order_by_most_relevant_label">Most Relevant</string>
+    <string name="settings_order_by_most_relevant_value" translatable="false">relevance</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <string name="parameter_section_label">section</string>
+    <string name="parameter_section_value">environment</string>
+    <string name="parameter_show_tags_label">show-tags</string>
+    <string name="parameter_show_tags_keyword_value">keyword</string>
+    <string name="parameter_show_tags_contributor_value">contributor</string>
+    <string name="parameter_q_label">q</string>
+    <string name="parameter_order_by_label">order-by</string>
+    <string name="parameter_api_key_label">api-key</string>
+
+    <string name="placeholder_section_text">ENVIRONMENT</string>
+    <string name="placeholder_title_text">Long placeholder location that should wrap to more than 2 lines of text</string>
+    <string name="placeholder_date">Sept 21, 2018</string>
+    <string name="placeholder_author_text">Amy Daniewicz</string>
+
 </resources>

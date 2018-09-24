@@ -7,10 +7,8 @@ import java.util.List;
 
 public class ArticleLoader extends AsyncTaskLoader<List<Article>> {
 
-    /** Tag for log messages */
     private static final String LOG_TAG = ArticleLoader.class.getName();
 
-    /** Query URL */
     private String mUrl;
 
     public ArticleLoader(Context context, String url) {
@@ -28,9 +26,7 @@ public class ArticleLoader extends AsyncTaskLoader<List<Article>> {
         if (mUrl == null) {
             return null;
         }
-        // Perform the HTTP request for article data and process the response.
         List<Article> result = QueryUtils.fetchArticleData(mUrl);
         return result;
     }
-
 }

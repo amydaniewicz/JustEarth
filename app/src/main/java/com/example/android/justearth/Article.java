@@ -7,7 +7,6 @@ public class Article {
     private String mUrl;
     private String mAuthor;
 
-    /** Constructor */
     public Article(String title, String section, String date, String url, String author) {
         mTitle = title;
         mSection = section;
